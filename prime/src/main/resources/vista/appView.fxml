@@ -9,6 +9,8 @@
     <center>
         <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE">
             <tabs>
+
+                <!-- ===================== ESTUDIANTES ===================== -->
                 <Tab text="Estudiantes">
                     <AnchorPane>
                         <VBox spacing="8" AnchorPane.topAnchor="8" AnchorPane.leftAnchor="8" AnchorPane.rightAnchor="8">
@@ -45,6 +47,7 @@
                     </AnchorPane>
                 </Tab>
 
+                <!-- ===================== DOCENTES ===================== -->
                 <Tab text="Docentes">
                     <AnchorPane>
                         <VBox spacing="8" AnchorPane.topAnchor="8" AnchorPane.leftAnchor="8" AnchorPane.rightAnchor="8">
@@ -81,6 +84,7 @@
                     </AnchorPane>
                 </Tab>
 
+                <!-- ===================== CURSOS ===================== -->
                 <Tab text="Cursos">
                     <AnchorPane>
                         <VBox spacing="8" AnchorPane.topAnchor="8" AnchorPane.leftAnchor="8" AnchorPane.rightAnchor="8">
@@ -119,6 +123,47 @@
                         </VBox>
                     </AnchorPane>
                 </Tab>
+
+                <!-- ===================== NUEVA PESTAÑA: NOTAS ===================== -->
+                <Tab text="Notas">
+                    <AnchorPane>
+                        <VBox spacing="8" AnchorPane.topAnchor="8" AnchorPane.leftAnchor="8" AnchorPane.rightAnchor="8">
+                            <GridPane hgap="8" vgap="8">
+                                <columnConstraints>
+                                    <ColumnConstraints halignment="RIGHT" minWidth="100" />
+                                    <ColumnConstraints hgrow="ALWAYS" />
+                                </columnConstraints>
+
+                                <Label text="ID Nota:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                                <TextField fx:id="notaId" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+                                <Label text="ID Estudiante:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                                <TextField fx:id="notaIdEstudiante" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+                                <Label text="ID Curso:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                                <TextField fx:id="notaIdCurso" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+                                <Label text="Valor:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+                                <TextField fx:id="notaValor" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+
+                                <Label text="Fecha:" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+                                <TextField fx:id="notaFecha" promptText="YYYY-MM-DD" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+                            </GridPane>
+
+                            <HBox spacing="8" alignment="CENTER">
+                                <Button text="Crear" onAction="#onCreateNota" />
+                                <Button text="Leer" onAction="#onReadNota" />
+                                <Button text="Actualizar" onAction="#onUpdateNota" />
+                                <Button text="Eliminar" onAction="#onDeleteNota" />
+                                <Button text="Listar" onAction="#onListNotas" />
+                                <Button text="Limpiar" onAction="#onClearNota" />
+                            </HBox>
+
+                            <TextArea fx:id="notaLog" editable="false" prefRowCount="6" wrapText="true" />
+                        </VBox>
+                    </AnchorPane>
+                </Tab>
+
             </tabs>
         </TabPane>
     </center>

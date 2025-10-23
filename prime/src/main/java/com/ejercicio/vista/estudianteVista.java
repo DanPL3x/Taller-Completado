@@ -1,8 +1,6 @@
 package com.ejercicio.vista;
 import com.ejercicio.modelo.estudiante;
 
-import javax.swing.*;
-import java.awt.*;
 import java.util.List;
 
 public class estudianteVista {

@@ -2,7 +2,6 @@ package com.ejercicio.vista;
 import java.util.List;
 
 import com.ejercicio.modelo.docente;
-import com.ejercicio.modelo.estudiante;
 
 public class docenteVista {
     public class estudianteVista {

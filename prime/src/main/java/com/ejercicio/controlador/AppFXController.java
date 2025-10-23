@@ -1,5 +1,6 @@
 package com.ejercicio.controlador;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.util.List;
@@ -148,4 +149,21 @@ public class AppFXController {
     @FXML private void onListCursos() { log(curLog, "Listar no implementado en controlador"); }
     @FXML private void onClearCurso() { curId.clear(); curNombre.clear(); curDescripcion.clear(); curCreditos.clear(); curIdDocente.clear(); }
 
+    public void onCreateNota(ActionEvent actionEvent) {
+    }
+
+    public void onReadNota(ActionEvent actionEvent) {
+    }
+
+    public void onUpdateNota(ActionEvent actionEvent) {
+    }
+
+    public void onDeleteNota(ActionEvent actionEvent) {
+    }
+
+    public void onListNotas(ActionEvent actionEvent) {
+    }
+
+    public void onClearNota(ActionEvent actionEvent) {
+    }
 }

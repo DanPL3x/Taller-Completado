@@ -2,10 +2,8 @@ package com.ejercicio.controlador;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import com.ejercicio.modelo.estudiante;
 import com.ejercicio.modelo.Database;
 import java.sql.*;
-import java.util.*;
 
 public class estudianteFXController {
 

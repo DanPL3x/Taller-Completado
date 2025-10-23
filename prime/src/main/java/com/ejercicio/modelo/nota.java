@@ -45,64 +45,61 @@ public class nota {
 
 
     public void agregarNota(nota nota) throws SQLException {
-        // Obtener conexión desde tu clase Database
-        Connection con = Database.getConnection();
         String sql = "INSERT INTO nota (id_estudiante, id_curso, valor, fecha) VALUES (?, ?, ?, ?)";
-        PreparedStatement ps = con.prepareStatement(sql);
+        try (Connection con = Database.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
-        ps.setInt(1, nota.getIdEstudiante());
-        ps.setInt(2, nota.getIdCurso());
-        ps.setDouble(3, nota.getValor());
-        ps.setDate(4, nota.getFecha());
+            ps.setInt(1, nota.getIdEstudiante());
+            ps.setInt(2, nota.getIdCurso());
+            ps.setDouble(3, nota.getValor());
+            ps.setDate(4, nota.getFecha());
 
-        ps.executeUpdate();
-        ps.close();
+            ps.executeUpdate();
+        }
     }
 
     public List<nota> listarNotas() throws SQLException {
-        Connection con = Database.getConnection();
         List<nota> lista = new ArrayList<>();
         String sql = "SELECT * FROM nota";
-        Statement st = con.createStatement();
-        ResultSet rs = st.executeQuery(sql);
+        try (Connection con = Database.getConnection();
+             Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
 
-        while (rs.next()) {
-            nota nota = new nota();
-            nota.setIdNota(rs.getInt("id"));
-            nota.setIdEstudiante(rs.getInt("id_estudiante"));
-            nota.setIdCurso(rs.getInt("id_curso"));
-            nota.setValor(rs.getDouble("valor"));
-            nota.setFecha(rs.getDate("fecha"));
-            lista.add(nota);
+            while (rs.next()) {
+                nota n = new nota();
+                n.setIdNota(rs.getInt("id_nota"));
+                n.setIdEstudiante(rs.getInt("id_estudiante"));
+                n.setIdCurso(rs.getInt("id_curso"));
+                n.setValor(rs.getDouble("valor"));
+                n.setFecha(rs.getDate("fecha"));
+                lista.add(n);
+            }
         }
-
-        rs.close();
-        st.close();
-
         return lista;
     }
 
     public void actualizarNota(nota nota) throws SQLException {
-        Connection con = Database.getConnection();
-        String sql = "UPDATE nota SET id_estudiante=?, id_curso=?, valor=?, fecha=? WHERE id=?";
-        PreparedStatement ps = con.prepareStatement(sql);
+        String sql = "UPDATE nota SET id_estudiante=?, id_curso=?, valor=?, fecha=? WHERE id_nota=?";
+        try (Connection con = Database.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
-        ps.setInt(1, nota.getIdEstudiante());
-        ps.setInt(2, nota.getIdCurso());
-        ps.setDouble(3, nota.getValor());
-        ps.setDate(4, nota.getFecha());
-        ps.setInt(5, nota.getIdNota());
+            ps.setInt(1, nota.getIdEstudiante());
+            ps.setInt(2, nota.getIdCurso());
+            ps.setDouble(3, nota.getValor());
+            ps.setDate(4, nota.getFecha());
+            ps.setInt(5, nota.getIdNota());
 
-        ps.executeUpdate();
-        ps.close();
+            ps.executeUpdate();
+        }
     }
 
     public void eliminarNota(int idNota) throws SQLException {
-        Connection con = Database.getConnection();
-        String sql = "DELETE FROM nota WHERE id=?";
-        PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, idNota);
-        ps.executeUpdate();
-        ps.close();
+        String sql = "DELETE FROM nota WHERE id_nota=?";
+        try (Connection con = Database.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, idNota);
+            ps.executeUpdate();
+        }
     }
 }

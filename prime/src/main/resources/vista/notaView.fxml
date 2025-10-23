@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.ejercicio.controlador.notaControlador">
+    <children>
+        <VBox spacing="8" AnchorPane.topAnchor="8" AnchorPane.leftAnchor="8" AnchorPane.rightAnchor="8">
+            <GridPane hgap="8" vgap="8">
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT" minWidth="100" />
+                    <ColumnConstraints hgrow="ALWAYS" />
+                </columnConstraints>
+
+                <Label text="ID Nota:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                <TextField fx:id="txtIdNota" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+                <Label text="ID Estudiante:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                <TextField fx:id="txtIdEstudiante" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+                <Label text="ID Curso:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                <TextField fx:id="txtIdCurso" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+                <Label text="Valor:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+                <TextField fx:id="txtValor" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+
+                <Label text="Fecha:" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+                <DatePicker fx:id="dpFecha" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+            </GridPane>
+
+            <HBox spacing="8" alignment="CENTER">
+                <Button text="Crear" onAction="#onCreateNota" />
+                <Button text="Leer" onAction="#onReadNota" />
+                <Button text="Actualizar" onAction="#onUpdateNota" />
+                <Button text="Eliminar" onAction="#onDeleteNota" />
+                <Button text="Listar" onAction="#onListNotas" />
+                <Button text="Limpiar" onAction="#onClearNota" />
+            </HBox>
+
+            <TableView fx:id="tablaNotas" prefHeight="200">
+                <columns>
+                    <TableColumn fx:id="colIdNota" text="ID" prefWidth="80" />
+                    <TableColumn fx:id="colIdEstudiante" text="ID Estudiante" prefWidth="100" />
+                    <TableColumn fx:id="colIdCurso" text="ID Curso" prefWidth="100" />
+                    <TableColumn fx:id="colValor" text="Valor" prefWidth="80" />
+                    <TableColumn fx:id="colFecha" text="Fecha" prefWidth="120" />
+                </columns>
+            </TableView>
+
+            <TextArea fx:id="notaLog" editable="false" prefRowCount="4" wrapText="true" />
+        </VBox>
+    </children>
+    <padding>
+        <Insets top="8" right="8" bottom="8" left="8"/>
+    </padding>
+</AnchorPane>

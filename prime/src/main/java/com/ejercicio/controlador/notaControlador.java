@@ -1,4 +1,3 @@
-
 package com.ejercicio.controlador;
 
 import com.ejercicio.modelo.nota;
@@ -8,8 +7,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Optional;
 
 public class notaControlador {
+
+    @FXML
+    private TextField txtIdNota;
 
     @FXML
     private TextField txtIdEstudiante;
@@ -73,6 +76,72 @@ public class notaControlador {
         }
     }
 
+    // Handlers públicos llamados desde FXML (delegan a la lógica ya existente)
+
+    @FXML
+    public void onCreateNota() {
+        agregarNota();
+    }
+
+    @FXML
+    public void onListNotas() {
+        cargarNotas();
+        mostrarAlerta("Éxito", "Listado actualizado.");
+    }
+
+    @FXML
+    public void onClearNota() {
+        limpiarCampos();
+    }
+
+    @FXML
+    public void onDeleteNota() {
+        eliminarNota();
+    }
+
+    @FXML
+    public void onUpdateNota() {
+        actualizarNota();
+    }
+
+    @FXML
+    public void onReadNota() {
+        // Intentar leer por el id ingresado, si no hay id usar la selección de la tabla
+        String idText = (txtIdNota != null) ? txtIdNota.getText() : "";
+        if (idText != null && !idText.isBlank()) {
+            try {
+                int id = Integer.parseInt(idText);
+                if (listaNotas == null) cargarNotas();
+                Optional<nota> opt = listaNotas.stream().filter(n -> n.getIdNota() == id).findFirst();
+                if (opt.isPresent()) {
+                    nota n = opt.get();
+                    // poblar campos
+                    txtIdEstudiante.setText(String.valueOf(n.getIdEstudiante()));
+                    txtIdCurso.setText(String.valueOf(n.getIdCurso()));
+                    txtValor.setText(String.valueOf(n.getValor()));
+                    dpFecha.setValue(n.getFecha() != null ? n.getFecha().toLocalDate() : LocalDate.now());
+                    mostrarAlerta("Éxito", "Nota cargada.");
+                } else {
+                    mostrarAlerta("Info", "No se encontró la nota con id " + id);
+                }
+            } catch (NumberFormatException ex) {
+                mostrarAlerta("Error", "ID inválido: " + ex.getMessage());
+            }
+        } else {
+            // usar selección de la tabla
+            nota seleccionada = tablaNotas.getSelectionModel().getSelectedItem();
+            if (seleccionada != null) {
+                txtIdNota.setText(String.valueOf(seleccionada.getIdNota()));
+                txtIdEstudiante.setText(String.valueOf(seleccionada.getIdEstudiante()));
+                txtIdCurso.setText(String.valueOf(seleccionada.getIdCurso()));
+                txtValor.setText(String.valueOf(seleccionada.getValor()));
+                dpFecha.setValue(seleccionada.getFecha() != null ? seleccionada.getFecha().toLocalDate() : LocalDate.now());
+            } else {
+                mostrarAlerta("Advertencia", "Ingrese un ID o seleccione una nota en la tabla.");
+            }
+        }
+    }
+
     @FXML
     private void agregarNota() {
         try {
@@ -85,7 +154,7 @@ public class notaControlador {
             nota.agregarNota(n);
             limpiarCampos();
             cargarNotas();
-            mostrarAlerta("Éxito", "nota agregada correctamente.");
+            mostrarAlerta("Éxito", "Nota agregada correctamente.");
         } catch (Exception e) {
             mostrarAlerta("Error", "No se pudo agregar la nota: " + e.getMessage());
         }
@@ -98,7 +167,7 @@ public class notaControlador {
             try {
                 nota.eliminarNota(seleccionada.getIdNota());
                 cargarNotas();
-                mostrarAlerta("Éxito", "nota eliminada correctamente.");
+                mostrarAlerta("Éxito", "Nota eliminada correctamente.");
             } catch (Exception e) {
                 mostrarAlerta("Error", "No se pudo eliminar la nota: " + e.getMessage());
             }
@@ -119,7 +188,7 @@ public class notaControlador {
 
                 nota.actualizarNota(seleccionada);
                 cargarNotas();
-                mostrarAlerta("Éxito", "nota actualizada correctamente.");
+                mostrarAlerta("Éxito", "Nota actualizada correctamente.");
             } catch (Exception e) {
                 mostrarAlerta("Error", "No se pudo actualizar la nota: " + e.getMessage());
             }
@@ -129,6 +198,7 @@ public class notaControlador {
     }
 
     private void limpiarCampos() {
+        txtIdNota.clear();
         txtIdEstudiante.clear();
         txtIdCurso.clear();
         txtValor.clear();
@@ -136,7 +206,8 @@ public class notaControlador {
     }
 
     private void mostrarAlerta(String titulo, String mensaje) {
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        Alert.AlertType type = "Error".equalsIgnoreCase(titulo) ? Alert.AlertType.ERROR : Alert.AlertType.INFORMATION;
+        Alert alerta = new Alert(type);
         alerta.setTitle(titulo);
         alerta.setHeaderText(null);
         alerta.setContentText(mensaje);
@@ -144,4 +215,4 @@ public class notaControlador {
     }
 }
 
-    
+

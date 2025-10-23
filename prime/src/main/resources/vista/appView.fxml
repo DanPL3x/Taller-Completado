@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.ejercicio.controlador.AppFXController" prefWidth="800" prefHeight="600">
+
+    <center>
+        <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Estudiantes">
+                    <AnchorPane>
+                        <VBox spacing="8" AnchorPane.topAnchor="8" AnchorPane.leftAnchor="8" AnchorPane.rightAnchor="8">
+                            <GridPane hgap="8" vgap="8">
+                                <columnConstraints>
+                                    <ColumnConstraints halignment="RIGHT" minWidth="100" />
+                                    <ColumnConstraints hgrow="ALWAYS" />
+                                </columnConstraints>
+
+                                <Label text="ID:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                                <TextField fx:id="estId" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+                                <Label text="Nombre:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                                <TextField fx:id="estNombre" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+                                <Label text="Correo:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                                <TextField fx:id="estCorreo" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+                                <Label text="Edad:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+                                <TextField fx:id="estEdad" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+                            </GridPane>
+
+                            <HBox spacing="8" alignment="CENTER">
+                                <Button text="Crear" onAction="#onCreateEstudiante" />
+                                <Button text="Leer" onAction="#onReadEstudiante" />
+                                <Button text="Actualizar" onAction="#onUpdateEstudiante" />
+                                <Button text="Eliminar" onAction="#onDeleteEstudiante" />
+                                <Button text="Listar" onAction="#onListEstudiantes" />
+                                <Button text="Limpiar" onAction="#onClearEstudiante" />
+                            </HBox>
+
+                            <TextArea fx:id="estLog" editable="false" prefRowCount="6" wrapText="true" />
+                        </VBox>
+                    </AnchorPane>
+                </Tab>
+
+                <Tab text="Docentes">
+                    <AnchorPane>
+                        <VBox spacing="8" AnchorPane.topAnchor="8" AnchorPane.leftAnchor="8" AnchorPane.rightAnchor="8">
+                            <GridPane hgap="8" vgap="8">
+                                <columnConstraints>
+                                    <ColumnConstraints halignment="RIGHT" minWidth="100" />
+                                    <ColumnConstraints hgrow="ALWAYS" />
+                                </columnConstraints>
+
+                                <Label text="ID:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                                <TextField fx:id="docId" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+                                <Label text="Nombre:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                                <TextField fx:id="docNombre" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+                                <Label text="Correo:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                                <TextField fx:id="docCorreo" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+                                <Label text="Especialidad:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+                                <TextField fx:id="docEspecialidad" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+                            </GridPane>
+
+                            <HBox spacing="8" alignment="CENTER">
+                                <Button text="Crear" onAction="#onCreateDocente" />
+                                <Button text="Leer" onAction="#onReadDocente" />
+                                <Button text="Actualizar" onAction="#onUpdateDocente" />
+                                <Button text="Eliminar" onAction="#onDeleteDocente" />
+                                <Button text="Listar" onAction="#onListDocentes" />
+                                <Button text="Limpiar" onAction="#onClearDocente" />
+                            </HBox>
+
+                            <TextArea fx:id="docLog" editable="false" prefRowCount="6" wrapText="true" />
+                        </VBox>
+                    </AnchorPane>
+                </Tab>
+
+                <Tab text="Cursos">
+                    <AnchorPane>
+                        <VBox spacing="8" AnchorPane.topAnchor="8" AnchorPane.leftAnchor="8" AnchorPane.rightAnchor="8">
+                            <GridPane hgap="8" vgap="8">
+                                <columnConstraints>
+                                    <ColumnConstraints halignment="RIGHT" minWidth="100" />
+                                    <ColumnConstraints hgrow="ALWAYS" />
+                                </columnConstraints>
+
+                                <Label text="ID:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                                <TextField fx:id="curId" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+                                <Label text="Nombre:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                                <TextField fx:id="curNombre" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+                                <Label text="Descripcion:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                                <TextField fx:id="curDescripcion" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+                                <Label text="Creditos:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+                                <TextField fx:id="curCreditos" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+
+                                <Label text="ID Docente:" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+                                <TextField fx:id="curIdDocente" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+                            </GridPane>
+
+                            <HBox spacing="8" alignment="CENTER">
+                                <Button text="Crear" onAction="#onCreateCurso" />
+                                <Button text="Leer" onAction="#onReadCurso" />
+                                <Button text="Actualizar" onAction="#onUpdateCurso" />
+                                <Button text="Eliminar" onAction="#onDeleteCurso" />
+                                <Button text="Listar" onAction="#onListCursos" />
+                                <Button text="Limpiar" onAction="#onClearCurso" />
+                            </HBox>
+
+                            <TextArea fx:id="curLog" editable="false" prefRowCount="6" wrapText="true" />
+                        </VBox>
+                    </AnchorPane>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+
+    <top>
+        <Label text="Aplicación de Gestión" style="-fx-font-size:20px; -fx-padding:8;" BorderPane.alignment="CENTER" />
+    </top>
+
+    <padding>
+        <Insets top="8" right="8" bottom="8" left="8" />
+    </padding>
+
+</BorderPane>
